@@ -72,13 +72,17 @@
             </td>
 
             <td>
-               
+                <a href=" {{ route('propietarios.edit', ['propietario' => $propietario->id]) }} " 
+                class="btn btn-info">
+                    <img src=" {{ asset('icons/actualizar.png') }}" alt="actualizar" width="20" height="20"> </button>
+                </a>
+
                 <form action=" {{ route('propietarios.destroy',['propietario'=>$propietario->id]) }} "
                     method="POST" style="display: inline-block">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger">
-                    <img src=" {{ asset('icons/delete.png') }}" alt="delete" width="26" height="26"> </button>
+                    <img src=" {{ asset('icons/delete.png') }}" alt="delete" width="20" height="20"> </button>
                 </form>
             </td>
         </tr>    

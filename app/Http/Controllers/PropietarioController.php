@@ -65,6 +65,13 @@ class PropietarioController extends Controller
     public function edit(string $id)
     {
         //
+        $propietario = Propietario::find($id);
+
+        $propietarios = DB::table('propietario')
+            ->orderBy('id')
+            ->get();
+        return view('propietario.edit',['propietario'=>$propietario ]);
+
     }
 
     /**
@@ -73,6 +80,16 @@ class PropietarioController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $propietario = Propietario::find($id);
+        $propietario->nombre = $request->nombre;
+        $propietario->apellido = $request->apellido;
+        $propietario->direccion = $request->direccion;
+        $propietario->telefono = $request->telefono;
+        $propietario->email = $request->email;
+        $propietario->save();
+
+        $propietarios = Propietario::select('propietario.*')->paginate(10);
+        return view('propietario.index',['propietarios'=>$propietarios]);
     }
 
     /**
