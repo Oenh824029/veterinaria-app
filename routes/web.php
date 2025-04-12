@@ -22,5 +22,6 @@ Route::post('/mascotas',[MacostaController::class,'store'])->name('mascotas.stor
 Route::get('/mascotas/create',[MacostaController::class,'create'])->name('mascotas.create');
 Route::put('/mascotas/{mascota}',[MacostaController::class,'update'])->name('mascotas.update');
 Route::get('/mascotas/{mascota}/edit',[MacostaController::class,'edit'])->name('mascotas.edit');
+Route::delete('/mascotas/{mascota}',[MacostaController::class,'destroy'])->name('mascotas.destroy');
 
 

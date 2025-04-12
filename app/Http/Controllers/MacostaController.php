@@ -110,5 +110,13 @@ class MacostaController extends Controller
     public function destroy(string $id)
     {
         //
+        $mascota = Mascota::find($id);
+        $mascota->delete();
+
+        $mascotas = DB::table('mascotas')
+            ->join('propietario', 'mascotas.propietario_id','=','propietario.id')
+            ->select('mascotas.*', 'propietario.nombre as nombre_propietario')
+            ->paginate(10);
+        return view('mascota.index',['mascotas'=>$mascotas]);
     }
 }
