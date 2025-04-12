@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PropietarioController;
+use App\Http\Controllers\MacostaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +15,9 @@ Route::get('propietarios/create',[PropietarioController::class,'create'])->name(
 Route::delete('propietarios/{propietario}',[PropietarioController::class,'destroy'])->name('propietarios.destroy');
 Route::put('propietarios/{propietario}',[PropietarioController::class,'update'])->name('propietarios.update');
 Route::get('propietarios/{propietario}/edit',[PropietarioController::class,'edit'])->name('propietarios.edit');
+
+// ruta de mascotas
+Route::get('mascotas',[MacostaController ::class,'index'])->name('mascotas.index');
 
 
 
