@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Propietario;
 use Illuminate\Http\Request;
-use Illuminate\Support○\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class PropietarioController extends Controller
 {
@@ -15,7 +15,8 @@ class PropietarioController extends Controller
     public function index()
     {
         //
-        $propietarios = Propietario::all();
+        $propietarios = DB::table('propietario')
+            ->paginate(10);
         return view('propietario.index',['propietarios'=>$propietarios]);
     }
 
@@ -25,6 +26,10 @@ class PropietarioController extends Controller
     public function create()
     {
         //
+        $propietarios = DB::table('propietario')
+            ->orderBy('id')
+            ->get();
+        return view('propietario.new', ['propietarios' => $propietarios]);
     }
 
     /**
@@ -33,6 +38,17 @@ class PropietarioController extends Controller
     public function store(Request $request)
     {
         //
+        $propietario = new Propietario();
+        $propietario->nombre = $request->nombre;
+        $propietario->apellido = $request->apellido;
+        $propietario->direccion = $request->direccion;
+        $propietario->telefono = $request->telefono;
+        $propietario->email = $request->email;
+        $propietario->save();
+
+        $propietarios = Propietario::select('propietario.*')->paginate(10);
+        return view('propietario.index',['propietarios'=>$propietarios]);
+
     }
 
     /**
