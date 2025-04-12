@@ -81,5 +81,12 @@ class PropietarioController extends Controller
     public function destroy(string $id)
     {
         //
+        $propietario = Propietario::find($id);
+        $propietario->delete();
+
+        $propietarios = DB::table('propietario')
+            ->select('propietario.*')
+            ->paginate(10);
+        return view('propietario.index',['propietarios'=>$propietarios]);
     }
 }
