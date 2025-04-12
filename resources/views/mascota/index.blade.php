@@ -14,7 +14,9 @@
 
   <div class="container">
   <h1> Listado de Mascotas </h1>
-
+  <a href=" {{ route('mascotas.create') }} " class="btn btn-success">
+    <img src=" {{ asset('icons/agregar.png') }} " alt="agregar" width="26" height="26"> Mascota
+  </a>
   </div>
    
 <hr>
