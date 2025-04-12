@@ -72,7 +72,10 @@
             </td>
 
             <td>
-              
+                <a href=" {{ route('mascotas.edit', ['mascota' => $mascota->id]) }} " 
+                class="btn btn-info">
+                    <img src=" {{ asset('icons/actualizar.png') }}" alt="actualizar" width="26" height="26"> </button>
+                </a>
             </td>
         </tr>    
 

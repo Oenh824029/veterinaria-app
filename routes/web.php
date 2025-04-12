@@ -20,7 +20,7 @@ Route::get('/propietarios/{propietario}/edit',[PropietarioController::class,'edi
 Route::get('/mascotas',[MacostaController ::class,'index'])->name('mascotas.index');
 Route::post('/mascotas',[MacostaController::class,'store'])->name('mascotas.store');
 Route::get('/mascotas/create',[MacostaController::class,'create'])->name('mascotas.create');
-
-
+Route::put('/mascotas/{mascota}',[MacostaController::class,'update'])->name('mascotas.update');
+Route::get('/mascotas/{mascota}/edit',[MacostaController::class,'edit'])->name('mascotas.edit');
 
 

@@ -74,6 +74,13 @@ class MacostaController extends Controller
     public function edit(string $id)
     {
         //
+        $mascota = Mascota::find($id);
+
+        $propietarios = DB::table('propietario')
+            ->orderBy('nombre')
+            ->get();
+
+        return view('mascota.edit',['mascota'=>$mascota, 'propietarios'=>$propietarios]);
     }
 
     /**
@@ -82,6 +89,19 @@ class MacostaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $mascota = Mascota::find($id);
+        $mascota->nombre = $request->nombre;
+        $mascota->especie = $request->especie;
+        $mascota->raza = $request->raza;
+        $mascota->edad = $request->edad;
+        $mascota->propietario_id = $request->codePropietario;
+        $mascota->save();
+
+        $mascotas = DB::table('mascotas')
+            ->join('propietario', 'mascotas.propietario_id','=','propietario.id')
+            ->select('mascotas.*', 'propietario.nombre as nombre_propietario')
+            ->paginate(10);
+        return view('mascota.index',['mascotas'=>$mascotas]);
     }
 
     /**
