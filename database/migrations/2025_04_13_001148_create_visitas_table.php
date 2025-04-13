@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('visitas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('mascota_id')->constrained('mascotas')->onDelete('cascade');
+            $table->date('fecha_visita');
+            $table->string('motivo', 50);
+            $table->string('tratamiento',50);
             $table->timestamps();
         });
     }

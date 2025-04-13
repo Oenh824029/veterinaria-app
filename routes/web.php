@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MacostaController;
+use App\Http\Controllers\VisitaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,4 +25,7 @@ Route::put('/mascotas/{mascota}',[MacostaController::class,'update'])->name('mas
 Route::get('/mascotas/{mascota}/edit',[MacostaController::class,'edit'])->name('mascotas.edit');
 Route::delete('/mascotas/{mascota}',[MacostaController::class,'destroy'])->name('mascotas.destroy');
 
+
+// rutas de visitas
+Route::get('/visitas',[VisitaController ::class,'index'])->name('visitas.index');
 
