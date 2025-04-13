@@ -76,6 +76,11 @@
 
             <td>
 
+                <a href=" {{ route('visitas.edit', ['visita' => $visita->id]) }} " 
+                class="btn btn-info">
+                    <img src=" {{ asset('icons/actualizar.png') }}" alt="actualizar" width="20" height="20"> </button>
+                </a>
+
                 <form action=" {{ route('visitas.destroy',['visita'=>$visita->id]) }} "
                     method="POST" style="display: inline-block">
                     @method('delete')

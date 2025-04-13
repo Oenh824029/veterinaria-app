@@ -68,6 +68,13 @@ class VisitaController extends Controller
     public function edit(string $id)
     {
         //
+        $visita = Visita::find($id);
+
+        $mascotas = DB::table('mascotas')
+            ->orderBy('nombre')
+            ->get();
+        return view('visita.edit',['visita'=>$visita,'mascotas'=>$mascotas]);
+
     }
 
     /**
@@ -76,6 +83,18 @@ class VisitaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $visita = Visita::find($id);
+        $visita->mascota_id = $request->codeMascota;
+        $visita->fecha_visita = $request->fecha; 
+        $visita->motivo = $request->motivo;
+        $visita->tratamiento = $request->tratamiento;
+        $visita->save();
+
+        $visitas = DB::table('visitas')
+            ->join('mascotas','visitas.mascota_id','=','mascotas.id')
+            ->select('visitas.*','mascotas.nombre as nombre_mascota')
+            ->paginate(10);
+        return view('visita.index',['visitas'=>$visitas]);
     }
 
     /**

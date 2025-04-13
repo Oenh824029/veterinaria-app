@@ -31,6 +31,6 @@ Route::get('/visitas',[VisitaController ::class,'index'])->name('visitas.index')
 Route::post('/visitas',[VisitaController::class,'store'])->name('visitas.store');
 Route::get('/visitas/create',[VisitaController::class,'create'])->name('visitas.create');
 Route::delete('/visitas/{visita}',[VisitaController::class,'destroy'])->name('visitas.destroy');
-
-
+Route::put('/visitas/{visita}',[VisitaController::class,'update'])->name('visitas.update');
+Route::get('/visitas/{visita}/edit',[VisitaController::class,'edit'])->name('visitas.edit');
 
