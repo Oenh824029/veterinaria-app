@@ -68,6 +68,13 @@
 
             <td>
 
+                <form action=" {{ route('visitas.destroy',['visita'=>$visita->id]) }} "
+                    method="POST" style="display: inline-block">
+                    @method('delete')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">
+                    <img src=" {{ asset('icons/delete.png') }}" alt="delete" width="26" height="26"> </button>
+                </form>
             </td>
         </tr>    
 

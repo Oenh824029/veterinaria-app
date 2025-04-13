@@ -84,5 +84,15 @@ class VisitaController extends Controller
     public function destroy(string $id)
     {
         //
+        $visita = Visita::find($id);
+        $visita->delete();
+
+        $visitas = DB::table('visitas')
+            ->join('mascotas','visitas.mascota_id','=','mascotas.id')
+            ->select('visitas.*','mascotas.nombre as nombre_mascota')
+            ->paginate(10);
+        //return view('visita.index',['visitas'=>$visitas]);
+        return redirect()->route('visitas.index')->with('success', 'Visita eliminada correctamente');
+
     }
 }
