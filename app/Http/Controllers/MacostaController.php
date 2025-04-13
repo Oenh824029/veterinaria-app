@@ -117,6 +117,7 @@ class MacostaController extends Controller
             ->join('propietario', 'mascotas.propietario_id','=','propietario.id')
             ->select('mascotas.*', 'propietario.nombre as nombre_propietario')
             ->paginate(10);
-        return view('mascota.index',['mascotas'=>$mascotas]);
+        //return view('mascota.index',['mascotas'=>$mascotas]);
+        return redirect()->route('mascota.index')->with('success', 'Mascota eliminada correctamente');
     }
 }

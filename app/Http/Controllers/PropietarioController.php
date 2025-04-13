@@ -104,6 +104,7 @@ class PropietarioController extends Controller
         $propietarios = DB::table('propietario')
             ->select('propietario.*')
             ->paginate(10);
-        return view('propietario.index',['propietarios'=>$propietarios]);
+        //return view('propietario.index',['propietarios'=>$propietarios]);
+        return redirect()->route('propietario.index')->with('success', 'Propietario eliminado correctamente');
     }
 }
