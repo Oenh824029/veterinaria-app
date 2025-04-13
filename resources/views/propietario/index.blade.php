@@ -12,6 +12,9 @@
   </head>
   <body>
 
+  <!-- llama al menu -->
+  @include('layouts.menu')
+  
   <div class="container">
   <h1> Listado de Propietarios </h1>
   <a href=" {{ route('propietarios.create') }} " class="btn btn-success">
@@ -19,6 +22,7 @@
   </a>
   </div>
 
+  <!-- confirma cuando se borra un registro -->
   @if(session('success'))
   <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
     {{ session('success') }}
