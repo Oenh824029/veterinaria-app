@@ -27,6 +27,10 @@ class VisitaController extends Controller
     public function create()
     {
         //
+        $mascotas = DB::table('mascotas')
+            ->orderBy('id')
+            ->get();
+        return view('visita.new', ['mascotas' => $mascotas]);
     }
 
     /**
@@ -35,6 +39,19 @@ class VisitaController extends Controller
     public function store(Request $request)
     {
         //
+        $visita = New Visita();
+        $visita->mascota_id = $request->codeMascota;
+        $visita->fecha_visita = $request->fecha;
+        $visita->motivo = $request->motivo;
+        $visita->tratamiento = $request->tratamiento;
+
+        $visita->save();
+
+        $visitas = DB::table('visitas')
+            ->join('mascotas','visitas.mascota_id','=','mascotas.id')
+            ->select('visitas.*','mascotas.nombre as nombre_mascota')
+            ->paginate(10);
+        return view('visita.index',['visitas'=>$visitas]);
     }
 
     /**

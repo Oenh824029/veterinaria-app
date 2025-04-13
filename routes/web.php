@@ -28,4 +28,9 @@ Route::delete('/mascotas/{mascota}',[MacostaController::class,'destroy'])->name(
 
 // rutas de visitas
 Route::get('/visitas',[VisitaController ::class,'index'])->name('visitas.index');
+Route::post('/visitas',[VisitaController::class,'store'])->name('visitas.store');
+Route::get('/visitas/create',[VisitaController::class,'create'])->name('visitas.create');
+
+
+
 
